@@ -21,8 +21,8 @@ module.exports = merge(webpackConfig, {
 	mode: 'production',
 	optimization: {
 		minimizer: [
-			new UglifyJsPlugin({
-				uglifyOptions: {
+			new TerserPlugin({
+				terserOptions: {
 					compress: {
 						unused: false,
 						drop_console: true
