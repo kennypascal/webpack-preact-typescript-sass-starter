@@ -1,0 +1,16 @@
+<html>
+  <head>
+    <meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Webpack Preact Typescript SASS</title>
+	<%= require('./partials/ie-settings.ejs')() %>
+	<!-- css -->
+	<%= inlineSource(htmlWebpackPlugin, compilation, 'style') %>
+  </head>
+  <body>
+	<!-- html -->
+	<div id="root"></div>
+	<!-- javascript -->
+	<%= inlineSource(htmlWebpackPlugin, compilation, 'script') %>
+  </body>
+</html>

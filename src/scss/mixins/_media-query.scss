@@ -1,0 +1,44 @@
+@import '~breakpoint-sass';
+
+// Breakpoints
+// -----------------------------------------------------------------------------
+// Define the minimum and maximum dimensions at which your layout will change,
+// adapting to different screen sizes, for use in media queries.
+//
+// Mobile: 0 ~ 580px
+// Medium Mobile (Phablet + Tablet Portrait) ish: 581px ~ 959px
+// Desktop: 960px +
+
+$small: 768px; // Start of phablet breakpoint
+$large: 960px; // Start of desktop breakpoint
+
+// Responsive break points
+$breakpoint-small: max-width ($small - 1); // Mobile
+$breakpoint-medium-only: $small ($large - 1); // Phablet + Portrait
+$breakpoint-medium-down: max-width ($large - 1); // Below Desktop
+$breakpoint-medium-up: min-width $small; // Above Phablet & Portrait
+$breakpoint-large: min-width $large; // Desktop
+
+@mixin small {
+	@include breakpoint($breakpoint-small) {
+		@content;
+	}
+}
+
+@mixin medium-down {
+	@include breakpoint($breakpoint-medium-down) {
+		@content;
+	}
+}
+
+@mixin medium-up {
+	@include breakpoint($breakpoint-medium-up) {
+		@content;
+	}
+}
+
+@mixin large {
+	@include breakpoint($breakpoint-large) {
+		@content;
+	}
+}
