@@ -26,7 +26,7 @@ Before you start developing you will need:
 
 - [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 - [Node.js](https://nodejs.org/)
-- [NPM](https://www.npmjs.com/) (version 6.10.3 is recommended for this repo)
+- [NPM](https://www.npmjs.com/) (version 8.12.0 is recommended for this repo)
 - [NVM](https://github.com/creationix/nvm) (manage multiple versions of Node and NPM)
 
 
