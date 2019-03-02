@@ -16,7 +16,7 @@
 		"start": "npm run ip && webpack-dev-server -d --history-api-fallback --hot --inline --progress --colors --config webpack.config.dev.js",
 		"build": "webpack -p --progress --colors --config webpack.config.build.js && node tools/messages/build.js",
 		"build:analyze": "webpack -p --progress --colors --config webpack.config.build.js --env.analyze && node tools/messages/build.js",
-		"prettier": "prettier --write \"src/**/*.{ts,tsx,css,scss,js}\""
+		"prettier": "prettier --write \"src/**/*.{ts,tsx,css,scss,js,json}\""
 	},
 	"dependencies": {
 		"classnames": "^2.2.6",
