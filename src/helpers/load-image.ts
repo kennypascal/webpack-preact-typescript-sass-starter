@@ -52,7 +52,6 @@ export namespace CatchImageLoad {
 		debug(debug: boolean): void
 	}
 	class CatchImageLoad implements ICatchImageLoad {
-		private index: number = 0
 		private _log: boolean = false
 		private _callback: Array<Function> = []
 		private usePrivate(): number {
