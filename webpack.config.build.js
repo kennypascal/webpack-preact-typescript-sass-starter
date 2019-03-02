@@ -12,7 +12,7 @@ const analyze = process.argv.indexOf('--env.analyze') >= 0;
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 // utilities
 const getAssetFilename = require('./tools/utilities').getAssetFilename;
