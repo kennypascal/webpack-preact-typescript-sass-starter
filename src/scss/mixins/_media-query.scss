@@ -20,25 +20,25 @@ $breakpoint-medium-up: min-width $small; // Above Phablet & Portrait
 $breakpoint-large: min-width $large; // Desktop
 
 @mixin small {
-	@include breakpoint($breakpoint-small) {
-		@content;
-	}
+  @include breakpoint($breakpoint-small) {
+    @content;
+  }
 }
 
 @mixin medium-down {
-	@include breakpoint($breakpoint-medium-down) {
-		@content;
-	}
+  @include breakpoint($breakpoint-medium-down) {
+    @content;
+  }
 }
 
 @mixin medium-up {
-	@include breakpoint($breakpoint-medium-up) {
-		@content;
-	}
+  @include breakpoint($breakpoint-medium-up) {
+    @content;
+  }
 }
 
 @mixin large {
-	@include breakpoint($breakpoint-large) {
-		@content;
-	}
+  @include breakpoint($breakpoint-large) {
+    @content;
+  }
 }

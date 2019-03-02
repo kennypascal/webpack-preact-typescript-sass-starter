@@ -6,18 +6,18 @@ import { elementPosition } from './element-position';
  * @returns true if the element is in view
  */
 export function elementIsInView(element: Element, offset: number = 0.5): boolean {
-	let status = false;
-	if (element) {
-		let elementHeight = element.getBoundingClientRect().height;
-		let calculatedHeight = (elementHeight > window.innerHeight ? window.innerHeight : elementHeight) * offset;
-		if (
-			elementPosition(element).y < window.innerHeight + window.pageYOffset - calculatedHeight &&
-			elementPosition(element).y + elementHeight - calculatedHeight >= window.pageYOffset
-		) {
-			status = true;
-		} else if (elementPosition(element).y + (elementHeight - calculatedHeight) >= window.pageYOffset) {
-			status = false;
-		}
-	}
-	return status;
+  let status = false;
+  if (element) {
+    let elementHeight = element.getBoundingClientRect().height;
+    let calculatedHeight = (elementHeight > window.innerHeight ? window.innerHeight : elementHeight) * offset;
+    if (
+      elementPosition(element).y < window.innerHeight + window.pageYOffset - calculatedHeight &&
+      elementPosition(element).y + elementHeight - calculatedHeight >= window.pageYOffset
+    ) {
+      status = true;
+    } else if (elementPosition(element).y + (elementHeight - calculatedHeight) >= window.pageYOffset) {
+      status = false;
+    }
+  }
+  return status;
 }

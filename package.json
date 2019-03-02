@@ -15,7 +15,8 @@
 		"ip": "node tools/messages/ip.js",
 		"start": "npm run ip && webpack-dev-server -d --history-api-fallback --hot --inline --progress --colors --config webpack.config.dev.js",
 		"build": "webpack -p --progress --colors --config webpack.config.build.js && node tools/messages/build.js",
-		"build:analyze": "webpack -p --progress --colors --config webpack.config.build.js --env.analyze && node tools/messages/build.js"
+		"build:analyze": "webpack -p --progress --colors --config webpack.config.build.js --env.analyze && node tools/messages/build.js",
+		"prettier": "prettier --write \"src/**/*.{ts,tsx,css,scss,js}\""
 	},
 	"dependencies": {
 		"classnames": "^2.2.6",
@@ -49,6 +50,7 @@
 		"postcss-loader": "^3.0.0",
 		"postcss-reporter": "^6.0.1",
 		"postcss-url": "^8.0.0",
+		"prettier": "^1.16.4",
 		"prompt": "^1.0.0",
 		"raw-loader": "^1.0.0",
 		"react-hot-loader": "4.7.1",
@@ -56,9 +58,9 @@
 		"rimraf": "^2.6.3",
 		"sass-loader": "^7.1.0",
 		"style-loader": "^0.23.1",
+		"terser-webpack-plugin": "^1.2.1",
 		"ts-loader": "^5.3.3",
 		"typescript": "^3.3.3333",
-		"terser-webpack-plugin": "^1.2.1",
 		"webpack": "^4.29.6",
 		"webpack-bundle-analyzer": "^3.0.4",
 		"webpack-cli": "^3.2.3",

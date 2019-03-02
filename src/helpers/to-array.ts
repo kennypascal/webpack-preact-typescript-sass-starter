@@ -1,3 +1,3 @@
-export function toArray(value:any) {
-	return (Array.isArray(value) ? value : [value])
+export function toArray(value: any) {
+  return Array.isArray(value) ? value : [value];
 }

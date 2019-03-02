@@ -1,65 +1,65 @@
 /* Adds absolute positioning in a 3x3 grid format. */
 
 @mixin position($align-padding: $global-spacing) {
-	&--bottom-right,
-	&--top-right,
-	&--bottom-left,
-	&--top-left,
-	&--middle-left,
-	&--middle-right,
-	&--middle-center,
-	&--top-center,
-	&--bottom-center {
-		position: absolute;
-	}
+  &--bottom-right,
+  &--top-right,
+  &--bottom-left,
+  &--top-left,
+  &--middle-left,
+  &--middle-right,
+  &--middle-center,
+  &--top-center,
+  &--bottom-center {
+    position: absolute;
+  }
 
-	&--top-right {
-		top: $align-padding;
-		right: $align-padding;
-	}
+  &--top-right {
+    top: $align-padding;
+    right: $align-padding;
+  }
 
-	&--top-center {
-		top: $align-padding;
-		left: 50%;
-		transform: translateX(-50%);
-	}
+  &--top-center {
+    top: $align-padding;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 
-	&--top-left {
-		top: $align-padding;
-		left: $align-padding;
-	}
+  &--top-left {
+    top: $align-padding;
+    left: $align-padding;
+  }
 
-	&--middle-right {
-		top: 50%;
-		transform: translateY(-50%);
-		right: $align-padding;
-	}
+  &--middle-right {
+    top: 50%;
+    transform: translateY(-50%);
+    right: $align-padding;
+  }
 
-	&--middle-center {
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-	}
+  &--middle-center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
 
-	&--middle-left {
-		top: 50%;
-		transform: translateY(-50%);
-		left: $align-padding;
-	}
+  &--middle-left {
+    top: 50%;
+    transform: translateY(-50%);
+    left: $align-padding;
+  }
 
-	&--bottom-right {
-		bottom: $align-padding;
-		right: $align-padding;
-	}
+  &--bottom-right {
+    bottom: $align-padding;
+    right: $align-padding;
+  }
 
-	&--bottom-center {
-		bottom: $align-padding;
-		left: 50%;
-		transform: translateX(-50%);
-	}
+  &--bottom-center {
+    bottom: $align-padding;
+    left: 50%;
+    transform: translateX(-50%);
+  }
 
-	&--bottom-left {
-		bottom: $align-padding;
-		left: $align-padding;
-	}
+  &--bottom-left {
+    bottom: $align-padding;
+    left: $align-padding;
+  }
 }
