@@ -1,4 +1,4 @@
-const { DEFAULT_PACKAGE_NAME } = require('./constants/default');
+const { DEFAULT_PACKAGE_NAME, DEFAULT_PACKAGE_TITLE } = require('./constants/default');
 
 const replace = require('replace');
 const chalk = require('chalk');
@@ -18,6 +18,10 @@ const prompts = [
 		description: chalkPrompt('Project Name') + chalkDescription(` (default: ${DEFAULT_PACKAGE_NAME})`),
 		pattern: /^[^._][a-z0-9-_~]+$/,
 		message: chalkMessage('Limited to: lowercase letters, numbers, period, hyphen, ' + 'underscore, and tilde; cannot begin with period or underscore.')
+	},
+	{
+		name: 'projectTitle',
+		description: chalkPrompt('Project Title') + chalkDescription(` (default: ${DEFAULT_PACKAGE_TITLE})`),
 	},
 	{
 		name: 'version',
@@ -46,6 +50,10 @@ prompt.get(prompts, function(err, result) {
 		{
 			key: 'name',
 			value: result.projectName || DEFAULT_PACKAGE_NAME
+		},
+		{
+			key: 'title',
+			value: result.projectTitle || DEFAULT_PACKAGE_TITLE
 		},
 		{
 			key: 'version',

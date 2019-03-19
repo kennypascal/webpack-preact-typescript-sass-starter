@@ -16,6 +16,7 @@ const devServerEntryPoint = [`webpack/hot/only-dev-server`, `react-hot-loader/pa
 
 // utilities
 const getAssetFilename = require('./tools/utilities').getAssetFilename;
+const getTitle = require('./tools/utilities').getTitle;
 
 module.exports = {
   context: sourcePath,
@@ -107,13 +108,11 @@ module.exports = {
       chunks: ['app'],
       template: 'index.ejs',
       filename: 'index.html',
+      title: getTitle()
     })
   ]
 };
 
-
 if (inlineSource) {
-	module.exports.plugins.push(
-		new HtmlWebpackInlineSourcePlugin()
-	);
+  module.exports.plugins.push(new HtmlWebpackInlineSourcePlugin());
 }
