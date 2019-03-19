@@ -1,3 +1,9 @@
-export function getLocationHash() {
-	return window.location.hash.replace(/^#/, '');
+/**
+ *
+ *
+ * @export
+ * @returns {string} Returns the window's location hash without the #'
+ */
+export function getLocationHash(): string {
+  return window.location.hash.replace(/^#/, '');
 }

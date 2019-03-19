@@ -1,7 +1,9 @@
-export function markDownHTML(string: string): { dangerouslySetInnerHTML: { __html: string } } {
-	return {
-		dangerouslySetInnerHTML: {
-			__html: string
-		}
-	};
+// React replacement for using innerHTML in the browser DOM.
+
+export function markDownHTML(string) {
+  return {
+    dangerouslySetInnerHTML: {
+      __html: string
+    }
+  };
 }

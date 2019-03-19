@@ -12,47 +12,47 @@ const analyze = process.argv.indexOf('--env.analyze') >= 0;
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 // utilities
 const getAssetFilename = require('./tools/utilities').getAssetFilename;
 
 module.exports = merge(webpackConfig, {
-	mode: 'production',
-	optimization: {
-		minimizer: [
-			new TerserPlugin({
-				terserOptions: {
-					compress: {
-						unused: false,
-						drop_console: true
-					},
-					ecma: 5,
-					warnings: false,
-					mangle: true,
-					output: {
-						comments: false
-					}
-				},
-				sourceMap: false
-			})
-		]
-	},
-	stats: {
-		modules: false,
-		children: false,
-		assetsSort: '!field'
-	},
-	output: {
-		path: outPath,
-		filename: (isProduction ? `assets/js/${getAssetFilename()}` : '') + `[name].js`,
-		publicPath: '/'
-	},
-	plugins: [
-		// clean the build directory
-		new CleanWebpackPlugin([outPath], { verbose: false }),
+  mode: 'production',
+  optimization: {
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          compress: {
+            unused: false,
+            drop_console: true
+          },
+          ecma: 5,
+          warnings: false,
+          mangle: true,
+          output: {
+            comments: false
+          }
+        },
+        sourceMap: true
+      })
+    ]
+  },
+  stats: {
+    modules: false,
+    children: false,
+    assetsSort: '!field'
+  },
+  output: {
+    path: outPath,
+    filename: (isProduction ? `assets/js/${getAssetFilename()}` : '') + `[name].js`,
+    publicPath: '/'
+  },
+  plugins: [
+    // clean the build directory
+    new CleanWebpackPlugin([outPath], { verbose: false }),
 
-		// analyze bundled javascript
-		new BundleAnalyzerPlugin({ analyzerMode: analyze ? 'static' : 'disabled' })
-	]
+    // analyze bundled javascript
+    new BundleAnalyzerPlugin({ analyzerMode: analyze ? 'static' : 'disabled' })
+  ]
 });

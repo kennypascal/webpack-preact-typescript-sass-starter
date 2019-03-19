@@ -1,15 +1,17 @@
+import { toLatin } from './to-latin';
+
 /**
- * To camel case
- * @param string
- * @returns  A string as camel case
+ *
+ *
+ * @export
+ * @param {string} string
+ * @returns {string} Returns a string as camel case
  */
 export function toCamelCase(string: string): string {
-	return string
-		.toLowerCase()
-		.replace(/[-_]+/g, ' ')
-		.replace(/[^\w\s]/g, '')
-		.replace(/ (.)/g, function($1) {
-			return $1.toUpperCase();
-		})
-		.replace(/ /g, '');
+  return toLatin(string)
+    .toLowerCase()
+    .replace(/[-_]+/g, ' ')
+    .replace(/[^\w\s]/g, '')
+    .replace(/ (.)/g, ($1) => $1.toUpperCase())
+    .replace(/ /g, '');
 }
