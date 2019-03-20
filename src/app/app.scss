@@ -3,86 +3,90 @@
 @import url(https://fonts.googleapis.com/css?family=Abril+Fatface);
 
 body {
-	background: black;
+  background: black;
+}
+
+#root {
+  &,
+  .app {
+    height: 100%;
+  }
 }
 
 .app {
-	opacity: 0;
-	transition: $transition-default;
-	transition-duration: $transition-duration * 4;
-	min-height: 100%;
-	border: yellow 20px solid;
+  opacity: 0;
+  transition: $transition-default;
+  transition-duration: $transition-duration * 4;
+  border: yellow 20px solid;
 
-	&.is-ready {
-		opacity: 1;
-	}
+  &.is-ready {
+    opacity: 1;
+  }
 
-	.bkgd {
-		position: fixed;
-		width: calc(100% - 40px);
-		height: calc(100% - 40px);
-		object-fit: cover;
-		opacity: 0.75;
-	}
+  .bkgd {
+    position: fixed;
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    object-fit: cover;
+    opacity: 0.75;
+  }
 
-	.content {
-		@include align-center;
+  .content {
+    @include align-center;
 
-		color: white;
-		text-align: center;
+    color: white;
+    text-align: center;
 
-		h1 {
-			@include small {
-				font-size: 12.5vw;
-			}
+    h1 {
+      @include small {
+        font-size: 12.5vw;
+      }
 
+      font-size: 5vw;
+      display: inline-block;
+      font-family: 'Abril Fatface', cursive;
+    }
 
-			font-size: 5vw;
-			display: inline-block;
-			font-family: 'Abril Fatface', cursive;
-		}
+    &__divider {
+      padding: $global-spacing 0;
 
-		&__divider {
-			padding: $global-spacing 0;
+      hr {
+        border: none;
+        border-bottom: thin solid white;
+        width: 5%;
+      }
+    }
 
-			hr {
-				border: none;
-				border-bottom: thin solid white;
-				width: 5%;
-			}
-		}
+    &__tools {
+      display: flex;
+      align-items: center;
 
-		&__tools {
-			display: flex;
-			align-items: center;
+      @include small {
+        display: block;
 
-			@include small {
-				display: block;
+        .tool {
+          margin: 0 auto $global-spacing;
+        }
+      }
 
-				.tool {
-					margin: 0 auto $global-spacing;
-				}
-			}
+      .tool {
+        display: block;
+        position: relative;
+        padding: 0 $global-spacing;
+        flex-grow: 1;
 
+        svg {
+          height: 15vw;
+          max-height: 30px;
+          margin: 0;
+        }
 
-			.tool {
-				display: block;
-				position: relative;
-				padding: 0 $global-spacing;
-				flex-grow: 1;
-
-				svg {
-					height: 15vw;
-					max-height: 30px;
-					margin: 0;
-				}
-
-				&--typescript {
-					svg {
-						max-height: 25px;
-					}
-				}
-			}
-		}
-	}
+        &--typescript {
+          svg {
+            max-height: 25px;
+          }
+        }
+      }
+    }
+  }
 }

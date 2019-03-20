@@ -7,4 +7,19 @@ if (process.env.NODE_ENV !== 'production') {
   require('file-loader!./index.ejs');
 }
 
-render(<App />, document.getElementById('root'));
+export function onLoad() {
+  const container = document.createElement('div');
+  container.id = 'root';
+  document.body.appendChild(container);
+  render(<App />, container);
+  console.log('App successfully loaded!');
+}
+
+(function() {
+  const DOMContentLoaded = document.readyState === 'interactive';
+  if (DOMContentLoaded) {
+    onLoad();
+  } else {
+    document.addEventListener('DOMContentLoaded', onLoad);
+  }
+})();

@@ -18,17 +18,18 @@
     "build:analyze": "webpack -p --progress --colors --config webpack.config.build.js --env.analyze && node tools/messages/build.js",
     "build:inline-source": "webpack -p --progress --colors --config webpack.config.build.js --env.inline-source && node tools/messages/build.js",
     "ip": "node tools/messages/ip.js",
-    "prettier": "prettier --write \"src/**/*.{ts,tsx,css}\""
+    "prettier": "prettier --write \"src/**/*.{ts,tsx,css,scss,js,jsx}\""
   },
   "dependencies": {
     "classnames": "^2.2.6",
+    "easing-sass-function": "^1.1.0",
     "preact": "^8.4.2",
     "preact-compat": "^3.18.4",
     "react": "^16.8.4",
     "react-dom": "^16.8.4"
   },
   "devDependencies": {
-    "@types/node": "^11.11.3",
+    "@types/node": "^11.11.4",
     "breakpoint-sass": "^2.7.1",
     "chalk": "^2.4.2",
     "clean-webpack-plugin": "^1.0.1",
@@ -63,7 +64,7 @@
     "style-loader": "^0.23.1",
     "terser-webpack-plugin": "^1.2.1",
     "ts-loader": "^5.3.3",
-    "typescript": "^3.3.3333",
+    "typescript": "^3.3.4000",
     "webpack": "^4.29.6",
     "webpack-bundle-analyzer": "^3.1.0",
     "webpack-cli": "^3.3.0",
