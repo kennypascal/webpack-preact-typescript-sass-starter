@@ -105,6 +105,7 @@ module.exports = {
 
     // html
     new HtmlWebpackPlugin({
+      inlineSource: '.(js|css)$',
       chunks: ['app'],
       template: 'index.ejs',
       filename: 'index.html',
