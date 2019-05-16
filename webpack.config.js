@@ -26,15 +26,12 @@ module.exports = {
   target: 'web',
   resolve: {
     alias: {
-      assets: path.resolve(__dirname, './src/assets'),
-      data: path.resolve(__dirname, './src/data'),
       node_modules: path.resolve(__dirname, './node_modules'),
-      scss: path.resolve(__dirname, './src/scss'),
-
       react: 'preact-compat',
       'react-dom': 'preact-compat'
     },
-    extensions: ['.js', '.ts', '.tsx'],
+    extensions: ['.ts', '.js', '.tsx', 'jsx', 'json'],
+    modules: [path.resolve(__dirname, 'src'), 'node_modules'],
     // Fix webpack's default behavior to not load packages with jsnext:main module
     // (jsnext:main directs not usually distributable es6 format, but es6 sources)
     mainFields: ['module', 'browser', 'main']
@@ -42,10 +39,19 @@ module.exports = {
   module: {
     rules: [
       // typescript
+      // ts-loader: convert typescript (es6) to javascript (es6),
+      // babel-loader: converts javascript (es6) to javascript (es5)
       {
-        test: /\.tsx?$/,
-        exclude: /node_modules/,
-        use: { loader: 'ts-loader' }
+        test: /\.(ts)x?$/,
+        use: ['babel-loader', 'ts-loader'],
+        exclude: [path.resolve(__dirname, './node_modules')]
+      },
+
+      // babel-loader for pure javascript (es6) => javascript (es5)
+      {
+        test: /\.(js)x?$/,
+        use: ['source-map-loader'],
+        exclude: [path.resolve(__dirname, './node_modules')]
       },
       // .ejs
       { test: /\.ejs$/, loader: 'ejs-loader' },

@@ -1,5 +1,3 @@
-import { toLatin } from './to-latin';
-
 /**
  *
  *
@@ -8,7 +6,7 @@ import { toLatin } from './to-latin';
  * @returns {string} Returns a string as hyphen case
  */
 export function toHyphenCase(string: string): string {
-  return toLatin(string)
+  return string
     .replace(/[^\w\s]/g, '')
     .replace(/[-_]+/g, ' ')
     .replace(/(^[A-Z])/, (first) => first.toLowerCase())

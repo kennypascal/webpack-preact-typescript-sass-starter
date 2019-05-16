@@ -8,7 +8,7 @@ import { elementPosition } from './element-position';
  * @param {number} [duration=800] | Duration on the scroll, default is 800ms
  * @description | Animates the window scroll to specified destination
  */
-export function windowScrollDestination(to = 0, duration = 800) {
+export function windowScrollDestination(to: number = 0, duration: number = 800) {
   const element = document.scrollingElement || document.documentElement,
     start = element.scrollTop,
     change = to - start,
@@ -42,7 +42,7 @@ export function windowScrollDestination(to = 0, duration = 800) {
  * @param [offset] | Offset the scroll to positon
  * @param [duration] | Animation duration
  */
-export function scrollToElement(element, offset: number = 0, duration: number = 800) {
+export function scrollToElement(element: Element, offset: number = 0, duration: number = 800) {
   let destination;
   if (element) {
     let targetElmentTopToPageBottom = document.documentElement.scrollHeight - elementPosition(element).y;
@@ -90,6 +90,6 @@ export function scrollToAnchor(event: MouseEvent | any, offset: number = 0, dura
  * @param [offset] | Offset the scroll to positon
  * @param [duration] | Animation duration
  */
-export function scrollToAnchorElement(element: HTMLElement, offset: number = 0, duration: number = 1200) {
-  element.onclick = (event) => scrollToAnchor(event);
+export function scrollToAnchorElement(element: HTMLElement) {
+  window.addEventListener('click', (event) => scrollToAnchor(event));
 }

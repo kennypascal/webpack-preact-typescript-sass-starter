@@ -1,5 +1,3 @@
-import { toLatin } from './to-latin';
-
 /**
  *
  *
@@ -8,7 +6,7 @@ import { toLatin } from './to-latin';
  * @returns {string} Returns a string as camel case
  */
 export function toCamelCase(string: string): string {
-  return toLatin(string)
+  return string
     .toLowerCase()
     .replace(/[-_]+/g, ' ')
     .replace(/[^\w\s]/g, '')

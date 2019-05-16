@@ -1,6 +1,6 @@
 import './index.scss';
 import { h, render } from 'preact';
-import App from './app/app';
+import App from 'app/app';
 
 if (process.env.NODE_ENV !== 'production') {
   require('preact/devtools');

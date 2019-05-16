@@ -3,9 +3,9 @@
  *
  * @export
  * @param {*} hex
- * @returns {{ h: number; s: number; l: number }} Returns the HSL value of a HEX color
+ * @returns {{ h: number; s: number; l: number }} Returns the HSL value of a HEX color (#FF0000)
  */
-export function colorHexToHSL(hex): { h: number; s: number; l: number } {
+export function colorHexToHSL(hex: string): { h: number; s: number; l: number } {
   let result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
   let r = parseInt(result[1]);
   let g = parseInt(result[2]);
