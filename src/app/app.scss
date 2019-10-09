@@ -1,30 +1,29 @@
 @import '~scss/tools';
-
 @import url(https://fonts.googleapis.com/css?family=Abril+Fatface);
 
 body {
   background: black;
-}
 
-#root {
-  &,
-  .app {
+  #root {
     height: 100%;
   }
 }
 
-.app {
+/** @define App; weak */
+
+.App {
+  height: 100%;
   opacity: 0;
   transition: $transition-default;
-  transition-duration: $transition-duration * 6;
+  transition-duration: $transition-duration * 5;
   transition-timing-function: ease(easeInOutQuad);
   border: yellow 20px solid;
 
-  &.is-ready {
+  &--ready {
     opacity: 1;
   }
 
-  .bkgd {
+  &__bkgd {
     position: fixed;
     width: calc(100% - 40px);
     height: calc(100% - 40px);
@@ -32,7 +31,7 @@ body {
     opacity: 0.75;
   }
 
-  .content {
+  &__content {
     @include align-center;
 
     color: white;
@@ -48,7 +47,7 @@ body {
       font-family: 'Abril Fatface', cursive;
     }
 
-    &__divider {
+    .divider {
       padding: $global-spacing 0;
 
       hr {
@@ -58,7 +57,7 @@ body {
       }
     }
 
-    &__tools {
+    .tools {
       display: flex;
       align-items: center;
 
@@ -91,3 +90,5 @@ body {
     }
   }
 }
+
+/** @end */

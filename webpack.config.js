@@ -1,71 +1,72 @@
-// variables
+// webpack
 const webpack = require('webpack');
 const path = require('path');
-const isProduction = process.argv.indexOf('-p') >= 0;
-const sourcePath = path.join(__dirname, './src');
-const inlineSource = process.argv.indexOf('--env.inline-source') >= 0; // css & js files are inlined or linked files.
 
-// webpack plugins
+// plugins
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
+const StyleLintPlugin = require('stylelint-webpack-plugin');
+
+// utilities
+const { getAssetFilename, getTitle } = require('./tools/utilities');
+
+// variables
+const isProduction = process.argv.indexOf('-p') >= 0;
+const sourcePath = path.join(__dirname, './src');
+const inlineSource = process.argv.indexOf('--env.inline-source') >= 0;
 
 // entry points
 const appEntryPoint = `./index.tsx`;
 const devServerEntryPoint = [`webpack/hot/only-dev-server`, `react-hot-loader/patch`, appEntryPoint];
 
-// utilities
-const getAssetFilename = require('./tools/utilities').getAssetFilename;
-const getTitle = require('./tools/utilities').getTitle;
-
 module.exports = {
   context: sourcePath,
   entry: {
-    app: isProduction ? appEntryPoint : devServerEntryPoint
+    app: isProduction ? appEntryPoint : devServerEntryPoint,
   },
   target: 'web',
   resolve: {
     alias: {
       node_modules: path.resolve(__dirname, './node_modules'),
       react: 'preact-compat',
-      'react-dom': 'preact-compat'
+      'react-dom': 'preact-compat',
     },
     extensions: ['.ts', '.js', '.tsx', 'jsx', 'json'],
     modules: [path.resolve(__dirname, 'src'), 'node_modules'],
     // Fix webpack's default behavior to not load packages with jsnext:main module
     // (jsnext:main directs not usually distributable es6 format, but es6 sources)
-    mainFields: ['module', 'browser', 'main']
+    mainFields: ['module', 'browser', 'main'],
   },
   module: {
     rules: [
+      {
+        enforce: 'pre',
+        test: /\.(ts|js)x?$/,
+        exclude: /node_modules/,
+        loader: 'eslint-loader',
+      },
       // typescript
       // ts-loader: convert typescript (es6) to javascript (es6),
       // babel-loader: converts javascript (es6) to javascript (es5)
       {
         test: /\.(ts)x?$/,
         use: ['babel-loader', 'ts-loader'],
-        exclude: [path.resolve(__dirname, './node_modules')]
+        exclude: [path.resolve(__dirname, './node_modules')],
       },
 
       // babel-loader for pure javascript (es6) => javascript (es5)
       {
         test: /\.(js)x?$/,
         use: ['source-map-loader'],
-        exclude: [path.resolve(__dirname, './node_modules')]
+        exclude: [path.resolve(__dirname, './node_modules')],
       },
       // .ejs
       { test: /\.ejs$/, loader: 'ejs-loader' },
       // scss
       {
         test: /\.(sa|sc|c)ss$/,
-        use: [
-          !isProduction ? 'style-loader' : MiniCssExtractPlugin.loader,
-          'css-loader',
-          'postcss-loader',
-          {
-            loader: 'sass-loader'
-          }
-        ]
+        use: [!isProduction ? 'style-loader' : MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader'],
       },
       // static assets
       { test: /\.html$/, use: 'html-loader' },
@@ -78,36 +79,45 @@ module.exports = {
             options: {
               name: '[path][name].[ext]',
               publicPath: '/',
-              emitFile: true
-            }
-          }
-        ]
-      }
-    ]
+              emitFile: true,
+            },
+          },
+        ],
+      },
+    ],
   },
   plugins: [
     // Define environment
     new webpack.DefinePlugin({
       process: {
         env: {
-          NODE_ENV: JSON.stringify(isProduction ? 'production' : 'development')
-        }
+          NODE_ENV: JSON.stringify(isProduction ? 'production' : 'development'),
+        },
       },
-      isProduction: isProduction ? 'true' : 'false'
+      isProduction: isProduction ? 'true' : 'false',
     }),
     // Determines whether to embed source files (css & js) based on HtmlWebpackPlugin plugin data
     new webpack.DefinePlugin({
-      inlineSource: (htmlPlugin, compilation, sourceType) => {
-        var extension = sourceType === 'script' ? 'js' : sourceType === 'style' ? 'css' : undefined;
+      inlineSource: (htmlWebpackPlugin, compilation, sourceType) => {
+        let extension;
+        if (sourceType === 'script') {
+          extension = 'js';
+        }
+        if (sourceType === 'style') {
+          extension = 'css';
+        }
         return htmlWebpackPlugin.options.inlineSource && extension
-          ? htmlWebpackPlugin.files[extension].map((file) => {
-              return '<' + sourceType + '>' + compilation.assets[file.substr(1)].source() + '</' + sourceType + '>';
+          ? htmlWebpackPlugin.files[extension].map(file => {
+              return `<${sourceType}>${compilation.assets[file.substr(1)].source()}</${sourceType}>`;
             })
           : '';
-      }
+      },
     }),
+
+    new StyleLintPlugin(),
+
     // extract css
-    new MiniCssExtractPlugin({ filename: (isProduction ? `assets/css/${getAssetFilename()}` : ``) + `[name].css`, chunkFilename: '[id].css' }),
+    new MiniCssExtractPlugin({ filename: `${isProduction ? `assets/css/${getAssetFilename()}` : ``}[name].css`, chunkFilename: '[id].css' }),
 
     // html
     new HtmlWebpackPlugin({
@@ -115,9 +125,9 @@ module.exports = {
       chunks: ['app'],
       template: 'index.ejs',
       filename: 'index.html',
-      title: getTitle()
-    })
-  ]
+      title: getTitle(),
+    }),
+  ],
 };
 
 if (inlineSource) {

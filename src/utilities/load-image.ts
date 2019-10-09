@@ -1,86 +1,124 @@
 /**
- * loadImage
- * -----------
- * Loads and returns an <img>
  *
- * CatchImageLoad
- * --------------
- * A singleton that executes callbacks when an image is loaded successfully.
- * Usefull for updating values dependant on image size (ie. Scroll Magic).
+ * Excutes a callback function when an image is loaded via loadImage().
+ * Useful for adjusting the page layout when images are added (ie. ScrollMagic).
+ *
+ * @class LoadImageCallback
  */
+class LoadImageCallback {
+  private log: boolean;
 
-interface InterfaceImageLoader {
-  src: string | undefined;
-  className?: string;
-  alt?: string;
-  href?: string;
-  title?: string;
-  target?: string;
-  style?: any;
+  private callbackList: Function[] = [];
+
+  public constructor() {
+    this.log = false;
+  }
+
+  // debugging
+
+  public set debug(debug) {
+    this.log = debug;
+  }
+
+  private logStatus(event): void {
+    if (this.log) {
+      console.warn(`loadImage: ${event.type}\n`, event.target as HTMLImageElement, `\n callbacks`, this.callbackList);
+    }
+  }
+
+  // callbacks
+
+  public addCallback(callback: Function): void {
+    if (callback) {
+      this.callbackList.push(callback);
+    }
+  }
+
+  private executeCallback(): void {
+    if (this.callbackList) {
+      this.callbackList.forEach(
+        (callBack): void => {
+          callBack();
+        },
+      );
+    }
+  }
+
+  // event handlers
+
+  public set success(event: Event) {
+    this.logStatus(event);
+    this.executeCallback();
+  }
+
+  public set failure(event: Event) {
+    this.logStatus(event);
+    this.executeCallback();
+  }
 }
 
-// loads and returns an image element
-export function loadImage(props: InterfaceImageLoader): HTMLImageElement {
-  let image = new Image();
-  image.classList.add('is-loading');
-  image.style.visibility = 'hidden';
-  image.alt = props.alt ? props.alt : '';
-  for (const key in props.style as CSSStyleDeclaration) {
-    image.style[key] = props.style[key];
+export const loadImageCallback = new LoadImageCallback();
+
+/**
+ * Loads and returns an image object.
+ * LoadImageCallback will execute any defined callbacks when the image is complete.
+ *
+ * @param {*} props
+ * @returns {HTMLImageElement}
+ */
+function loadImage({ src, callback = undefined, attributes = undefined }): HTMLImageElement {
+  const image = new Image();
+  image.classList.add('loading');
+
+  if (attributes) {
+    // add attributes
+    Object.keys(attributes).map(
+      (key): string => {
+        if (key !== 'src' && key !== 'callback') {
+          image.setAttribute(key, attributes[key]);
+        }
+        return key;
+      },
+    );
+    // add styles
+    if (attributes.style) {
+      Object.keys(attributes.style).map(
+        (key): string => {
+          if (key !== 'src' && key !== 'callback') {
+            image.style[key] = attributes.style[key];
+          }
+          return key;
+        },
+      );
+    }
   }
-  image.src = props.src;
+
+  image.style.visibility = 'hidden';
+
+  if (callback) {
+    loadImageCallback.addCallback(callback);
+  }
+
+  const onImageLoad = (event: Event): void => {
+    image.classList.remove('loading');
+    image.classList.add('loaded');
+    image.style.visibility = null;
+    loadImageCallback.success = event;
+  };
+
+  const onImageError = (event: Event): void => {
+    image.classList.remove('loading');
+    image.classList.add('error');
+    image.style.visibility = null;
+    loadImageCallback.failure = event;
+  };
+
+  // add src
+  image.src = src;
   image.addEventListener('load', onImageLoad);
   image.addEventListener('error', onImageError);
+
   return image;
 }
 
-export function onImageLoad(event: Event) {
-  CatchImageLoad.Instance.success(event);
-}
-
-export function onImageError(event: Event) {
-  CatchImageLoad.Instance.failure(event);
-}
-
-// Callbacks for when an image is loaded successfully.
-// Usefull for updating values dependant on image size (ie. Scroll Magic).
-export namespace CatchImageLoad {
-  interface ICatchImageLoad {
-    success(event: Event): void;
-    failure(event: Event): void;
-    callBack(callback: Function): void;
-    debug(debug: boolean): void;
-  }
-  class CatchImageLoad implements ICatchImageLoad {
-    private _log: boolean = false;
-    private _callback: Array<Function> = [];
-    private usePrivate(): number {
-      return this._callback.length;
-    }
-    public callBack(callback: Function) {
-      this._callback.push(callback);
-    }
-    public debug(debug: boolean) {
-      this._log = debug;
-    }
-    success(event: Event = undefined) {
-      this._log &&
-        console.log('Image load success. Executing', this.usePrivate(), 'callback(s)', this._callback, event ? (<HTMLImageElement>event.target).src : '');
-      if (this._callback) {
-        this._callback.forEach((callBack) => {
-          callBack();
-        });
-      }
-    }
-    failure(event: Event = undefined) {
-      this._log &&
-        console.log('Image load error. Executing', this.usePrivate(), 'callback(s)', this._callback, event ? (<HTMLImageElement>event.target).src : '');
-      if (this._callback) {
-        this._callback.forEach((callBack) => {
-          callBack();
-        });
-      }
-    }
-  }
-  export var Instance: ICatchImageLoad = new CatchImageLoad();
-}
+export default loadImage;

@@ -1,14 +1,14 @@
 /* Request Animation Frame */
 interface Window {
-	requestTimeout: any;
-	requestInterval: any;
-	clearRequestTimeout: any;
-	clearRequestInterval: any;
+  requestTimeout;
+  requestInterval;
+  clearRequestTimeout;
+  clearRequestInterval;
 }
 
 /* onError Definition for Preact */
 declare namespace JSX {
-	interface HTMLAttributes {
-		onError?: any;
-	}
+  interface HTMLAttributes {
+    onError?;
+  }
 }

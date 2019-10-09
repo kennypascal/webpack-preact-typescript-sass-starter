@@ -1,13 +1,15 @@
 import './index.scss';
 import { h, render } from 'preact';
-import App from 'app/app';
+import App from './app/app';
 
 if (process.env.NODE_ENV !== 'production') {
+  // eslint-disable-next-line global-require
   require('preact/devtools');
-  require('file-loader!./index.ejs');
+  // eslint-disable-next-line global-require
+  require('./index.ejs');
 }
 
-export function onLoad() {
+function onLoad(): void {
   const container = document.createElement('div');
   container.id = 'root';
   document.body.appendChild(container);
@@ -15,11 +17,9 @@ export function onLoad() {
   console.log('App successfully loaded!');
 }
 
-(function() {
-  const DOMContentLoaded = document.readyState === 'interactive';
-  if (DOMContentLoaded) {
-    onLoad();
-  } else {
-    document.addEventListener('DOMContentLoaded', onLoad);
-  }
-})();
+const DOMContentLoaded = document.readyState === 'interactive';
+if (DOMContentLoaded) {
+  onLoad();
+} else {
+  document.addEventListener('DOMContentLoaded', onLoad);
+}

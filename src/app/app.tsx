@@ -1,42 +1,55 @@
 import './app.scss';
 import { Component, h } from 'preact';
-import { markDownHTML } from 'utilities/mark-down-html';
+import markDownHTML from '../utilities/mark-down-html';
+import loadImage, { loadImageCallback } from '../utilities/load-image';
 
-const COMPONENT_NAME = 'app';
+const IconWebpack = require('../assets/svg/icon-webpack.svg').default;
+const IconPreact = require('../assets/svg/icon-preact.svg').default;
+const IconTypescript = require('../assets/svg/icon-typescript.svg').default;
+const IconSass = require('../assets/svg/icon-sass.svg').default;
 
-export interface AppProps {}
+const COMPONENT_NAME = 'App';
 
-export interface AppState {}
-
-export default class App extends Component<AppProps, AppState> {
+export default class App extends Component {
   public refApp: HTMLElement;
 
-  constructor(props: AppProps) {
-    super(props);
-  }
+  private setAppStatus = (): void => {
+    this.refApp.classList.add(`${COMPONENT_NAME}--ready`);
+    console.log(this.refApp);
+  };
 
-  componentDidMount() {}
+  public componentDidMount = (): void => {
+    loadImageCallback.debug = true;
+    loadImage({ src: '/assets/img/sven-scheuermeier-37377-unsplash.jpg', callback: this.setAppStatus() });
+  };
 
-  onLoad = () => this.setAppStatus();
-
-  onError = () => this.setAppStatus();
-
-  setAppStatus = () => this.refApp.classList.add(`is-ready`);
-
-  render(props: AppProps, state: AppState) {
+  public render(): JSX.Element {
     return (
-      <div ref={(project) => (this.refApp = project)} className={COMPONENT_NAME}>
-        <img className={'bkgd'} src={require('assets/img/sven-scheuermeier-37377-unsplash.jpg')} onLoad={this.onLoad} onError={this.onError} />
-        <div className={'content'}>
+      <div
+        ref={(ref): void => {
+          this.refApp = ref;
+        }}
+        className={COMPONENT_NAME}
+      >
+        <img className={`${COMPONENT_NAME}__bkgd`} src="/assets/img/sven-scheuermeier-37377-unsplash.jpg" alt="" data-id="test" />
+        <div className={`${COMPONENT_NAME}__content`}>
           <h1>En las monta&ntilde;as codificamos.</h1>
-          <p className={'content__divider'}>
+          <p className="divider">
             <hr />
           </p>
-          <div className={'content__tools'}>
-            <a href={'https://webpack.github.io'} className={'tool tool--webpack'} {...markDownHTML(require('assets/svg/icon-webpack.svg'))} />
-            <a href={'https://preactjs.com'} className={'tool tool--preact'} {...markDownHTML(require('assets/svg/icon-preact.svg'))} />
-            <a href={'https://www.typescriptlang.org'} className={'tool tool--typescript'} {...markDownHTML(require('assets/svg/icon-typescript.svg'))} />
-            <a href={'https://sass-lang.com'} className={'tool tool--sass'} {...markDownHTML(require('assets/svg/icon-sass.svg'))} />
+          <div className="tools">
+            <a href="https://webpack.github.io" className="tool tool--webpack">
+              <span {...markDownHTML(IconWebpack)} />
+            </a>
+            <a href="https://preactjs.com" className="tool tool--preact">
+              <span {...markDownHTML(IconPreact)} />
+            </a>
+            <a href="https://www.typescriptlang.org" className="tool tool--typescript">
+              <span {...markDownHTML(IconTypescript)} />
+            </a>
+            <a href="https://sass-lang.com" className="tool tool--sass">
+              <span {...markDownHTML(IconSass)} />
+            </a>
           </div>
         </div>
       </div>
