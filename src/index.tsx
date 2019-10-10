@@ -3,7 +3,7 @@ import { h, render } from 'preact';
 import App from 'app/app';
 
 if (process.env.NODE_ENV !== 'production') {
-  require('preact/devtools');
+  require('preact/debug');
   require('file-loader!./index.ejs');
 }
 
@@ -12,7 +12,6 @@ export function onLoad() {
   container.id = 'root';
   document.body.appendChild(container);
   render(<App />, container);
-  console.log('App successfully loaded!');
 }
 
 (function() {
