@@ -9,9 +9,7 @@ body {
   }
 }
 
-/** @define App; weak */
-
-.App {
+.app {
   height: 100%;
   opacity: 0;
   transition: $transition-default;
@@ -19,7 +17,7 @@ body {
   transition-timing-function: ease(easeInOutQuad);
   border: yellow 20px solid;
 
-  &--ready {
+  &.is-ready {
     opacity: 1;
   }
 

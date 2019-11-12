@@ -8,7 +8,7 @@
 export default function markDownHTML(string: string): { dangerouslySetInnerHTML: { __html } } {
   return {
     dangerouslySetInnerHTML: {
-      __html: string,
-    },
+      __html: string
+    }
   };
 }

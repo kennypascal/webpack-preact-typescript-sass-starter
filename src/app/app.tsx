@@ -1,54 +1,54 @@
 import './app.scss';
-import { Component, h } from 'preact';
+import { Component, h, createRef } from 'preact';
 import markDownHTML from '../utilities/mark-down-html';
-import loadImage, { loadImageCallback } from '../utilities/load-image';
 
-const IconWebpack = require('../assets/svg/icon-webpack.svg').default;
-const IconPreact = require('../assets/svg/icon-preact.svg').default;
-const IconTypescript = require('../assets/svg/icon-typescript.svg').default;
-const IconSass = require('../assets/svg/icon-sass.svg').default;
+const COMPONENT_NAME = 'app';
 
-const COMPONENT_NAME = 'App';
+const ICON_WEBPACK = require('../assets/svg/icon-webpack.svg').default;
+const ICON_PREACT = require('../assets/svg/icon-preact.svg').default;
+const ICON_TYPESCRIPT = require('../assets/svg/icon-typescript.svg').default;
+const ICON_SASS = require('../assets/svg/icon-sass.svg').default;
 
 export default class App extends Component {
-  public refApp: HTMLElement;
-
-  private setAppStatus = (): void => {
-    this.refApp.classList.add(`${COMPONENT_NAME}--ready`);
-    console.log(this.refApp);
-  };
+  public refApp = createRef();
 
   public componentDidMount = (): void => {
-    loadImageCallback.debug = true;
-    loadImage({ src: '/assets/img/sven-scheuermeier-37377-unsplash.jpg', callback: this.setAppStatus() });
+    console.log('componentDidMount', this, this.refApp);
   };
 
-  public render(): JSX.Element {
+  private onLoad = (): void => {
+    this.setAppStatus();
+  };
+
+  private onError = (): void => {
+    this.setAppStatus();
+  };
+
+  private setAppStatus = (): void => {
+    this.refApp.current.classList.add('is-ready');
+  };
+
+  public render(): h.JSX.Element {
     return (
-      <div
-        ref={(ref): void => {
-          this.refApp = ref;
-        }}
-        className={COMPONENT_NAME}
-      >
-        <img className={`${COMPONENT_NAME}__bkgd`} src="/assets/img/sven-scheuermeier-37377-unsplash.jpg" alt="" data-id="test" />
+      <div ref={this.refApp} className={COMPONENT_NAME}>
+        <img className={`${COMPONENT_NAME}__bkgd`} src='/assets/img/sven-scheuermeier-37377-unsplash.jpg' alt='' data-id='test' onLoad={this.onLoad} onError={this.onError} />
         <div className={`${COMPONENT_NAME}__content`}>
           <h1>En las monta&ntilde;as codificamos.</h1>
-          <p className="divider">
+          <p className='divider'>
             <hr />
           </p>
-          <div className="tools">
-            <a href="https://webpack.github.io" className="tool tool--webpack">
-              <span {...markDownHTML(IconWebpack)} />
+          <div className='tools'>
+            <a href='https://webpack.github.io' className='tool tool--webpack'>
+              <span {...markDownHTML(ICON_WEBPACK)} />
             </a>
-            <a href="https://preactjs.com" className="tool tool--preact">
-              <span {...markDownHTML(IconPreact)} />
+            <a href='https://preactjs.com' className='tool tool--preact'>
+              <span {...markDownHTML(ICON_PREACT)} />
             </a>
-            <a href="https://www.typescriptlang.org" className="tool tool--typescript">
-              <span {...markDownHTML(IconTypescript)} />
+            <a href='https://www.typescriptlang.org' className='tool tool--typescript'>
+              <span {...markDownHTML(ICON_TYPESCRIPT)} />
             </a>
-            <a href="https://sass-lang.com" className="tool tool--sass">
-              <span {...markDownHTML(IconSass)} />
+            <a href='https://sass-lang.com' className='tool tool--sass'>
+              <span {...markDownHTML(ICON_SASS)} />
             </a>
           </div>
         </div>

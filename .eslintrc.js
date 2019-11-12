@@ -4,21 +4,44 @@ module.exports = {
     node: true,
   },
   parser: '@typescript-eslint/parser', // Specifies the ESLint parser
-  extends: [
-    'plugin:@typescript-eslint/recommended', // Uses the recommended rules from the @typescript-eslint/eslint-plugin
-    'airbnb-typescript',
-    'prettier/@typescript-eslint', // Uses eslint-config-prettier to disable ESLint rules from @typescript-eslint/eslint-plugin that would conflict with prettier
-    'plugin:prettier/recommended', // Enables eslint-plugin-prettier and eslint-config-prettier. This will display prettier errors as ESLint errors. Make sure this is always the last configuration in the extends array.
-  ],
   parserOptions: {
     ecmaVersion: 2018, // Allow parsing of modern ECMAScript features
     sourceType: 'module', // Allow the use of imports
   },
+  extends: [
+    'airbnb-typescript',
+    'plugin:@typescript-eslint/recommended', // Uses the recommended rules from the @typescript-eslint/eslint-plugin
+    'standard',
+    'standard-preact',
+  ],
+  plugins: [],
   rules: {
-    // Custom ESLint rules, overwrite rules specified from the extended configs
-    'no-console': 'off',
-    '@typescript-eslint/no-var-requires': false,
+    // custom ESLint rules, overwrite rules specified from the extended configs
+    semi: 0,
+    'no-console': 0,
+    'max-len': [2, 180, 4, { ignoreUrls: true }],
+    'space-before-function-paren': [
+      'error',
+      {
+        anonymous: 'always',
+        named: 'never',
+        asyncArrow: 'always',
+      },
+    ],
+    '@typescript-eslint/explicit-member-accessibility': 'off',
+    '@typescript-eslint/explicit-function-return-type': 'off',
+    'react/jsx-props-no-spreading': 0,
   },
+  overrides: [
+    {
+      // enable rules specifically for TypeScript files
+      files: ['*.ts', '*.tsx'],
+      rules: {
+        '@typescript-eslint/explicit-member-accessibility': ['error'],
+        '@typescript-eslint/explicit-function-return-type': ['error']
+      },
+    },
+  ],
   settings: {
     react: {
       pragma: 'h',

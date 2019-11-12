@@ -1,6 +1,8 @@
-@import '~scss/tools'; // tools, mixins, functions & variables
+// tools, mixins, functions & variables
+@import '~scss/tools';
 
-@include reset; // reset
+// reset
+@include reset;
 
 html,
 body {
@@ -12,12 +14,4 @@ body {
 
 * {
   box-sizing: border-box;
-}
-
-%root {
-  @include font-smoothing;
-
-  font-size: 14px;
-  margin: 0 auto;
-  padding: 0;
 }

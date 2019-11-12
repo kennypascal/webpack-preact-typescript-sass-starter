@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable import/no-extraneous-dependencies */
 
 const path = require('path');
@@ -12,8 +13,7 @@ const postcssCssNext = require('postcss-cssnext')({ browsers: ['last 2 versions'
 const postcssCssReporter = require('postcss-reporter')({ clearReportedMessages: true });
 const postcssCssDiscardComments = require('postcss-discard-comments')({ removeAll: true });
 const postcssCssBrowserReporter = require('postcss-browser-reporter')({ disabled: isProduction });
-const postcssFailOnWarn = require('postcss-fail-on-warn');
 
 module.exports = {
-  plugins: [postcssImport, postcssUrl, postcssCssNext, postcssCssReporter, postcssCssDiscardComments, postcssCssBrowserReporter, postcssFailOnWarn],
+  plugins: [postcssImport, postcssUrl, postcssCssNext, postcssCssReporter, postcssCssDiscardComments, postcssCssBrowserReporter],
 };
