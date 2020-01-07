@@ -15,7 +15,7 @@ const sourcePath = path.join(__dirname, './src');
 const inlineSource = process.argv.indexOf('--env.inline-source') >= 0;
 
 const appEntryPoint = './index.tsx';
-const devServerEntryPoint = ['webpack/hot/only-dev-server', 'react-hot-loader/patch', appEntryPoint];
+const devServerEntryPoint = ['webpack/hot/only-dev-server', appEntryPoint];
 
 module.exports = {
   context: sourcePath,

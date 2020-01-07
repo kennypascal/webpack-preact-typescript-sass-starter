@@ -1,3 +1,4 @@
+import './scss/styles.scss';
 import './index.scss';
 import { h, render } from 'preact';
 import App from './app/app';
