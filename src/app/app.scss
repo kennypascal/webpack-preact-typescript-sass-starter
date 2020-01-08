@@ -12,7 +12,7 @@ body {
 .app {
   height: 100%;
   opacity: 0;
-  transition: $transition-default;
+  transition: opacity $transition-duration;
   transition-duration: $transition-duration * 5;
   transition-timing-function: ease(easeInOutQuad);
   border: yellow 20px solid;

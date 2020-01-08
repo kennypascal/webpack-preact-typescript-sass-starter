@@ -1,9 +1,6 @@
 /**
- *
- * Preact/React replacement for using innerHTML in the browser DOM
- * @export
- * @param {string} string
- * @returns {{ dangerouslySetInnerHTML: { __html } }}
+ * A Preact/React replacement for using innerHTML in the browser DOM.
+ * Return a dangerouslySetInnerHTML object.
  */
 export default function markDownHTML(string: string): { dangerouslySetInnerHTML: { __html } } {
   return {

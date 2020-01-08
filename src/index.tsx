@@ -25,3 +25,5 @@ export default function onLoad(): void {
     document.addEventListener('DOMContentLoaded', onLoad);
   }
 })();
+
+// console.log(toHyphenCase())
