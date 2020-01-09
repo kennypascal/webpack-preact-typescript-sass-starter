@@ -12,6 +12,7 @@
   },
   "scripts": {
     "test": "jest",
+    "test:watch": "npm test -- --watch --silent",
     "setup": "npm install && node tools/messages/setup.js && node tools/setup.js",
     "start": "npm run ip && webpack-dev-server -d --history-api-fallback --hot --inline --progress --colors --config webpack.config.dev.js",
     "build": "webpack -p --progress --colors --config webpack.config.build.js && node tools/messages/build.js",
@@ -27,6 +28,7 @@
     "react-dom": "^16.12.0"
   },
   "devDependencies": {
+    "@types/enzyme": "^3.10.4",
     "@babel/core": "^7.7.7",
     "@babel/preset-env": "^7.7.7",
     "@babel/preset-typescript": "^7.7.7",
@@ -43,6 +45,8 @@
     "copy-webpack-plugin": "^5.1.1",
     "css-loader": "^3.4.1",
     "ejs-loader": "^0.3.5",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-preact-pure": "^2.2.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-typescript": "^6.3.1",
     "eslint-config-prettier": "^6.9.0",
