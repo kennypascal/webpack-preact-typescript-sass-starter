@@ -1,9 +1,20 @@
 module.exports = {
   roots: ['<rootDir>/src'],
+  setupFiles: ['<rootDir>test/setup.ts'],
   transform: {
-    '^.+\\.tsx?$': 'ts-jest',
+    '^.+\\.(t|t)sx?$': 'ts-jest'
   },
-  testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.tsx?$',
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
-  testURL: 'https://www.somthing.com/index.html'
+  moduleNameMapper: {
+    '^react$': 'preact-compat',
+    '^react-dom$': 'preact-compat',
+    '\\.(css|less|sass|scss)$': '<rootDir>/__mocks__/styleMock.js',
+    '\\.(gif|ttf|eot|svg)$': '<rootDir>/__mocks__/fileMock.js'
+  },
+  testURL: 'https://www.somthing.com/index.html',
+  globals: {
+    'ts-jest': {
+      diagnostics: true
+    }
+  }
 }
