@@ -8,7 +8,7 @@ const merge = require('webpack-merge');
 const analyze = process.argv.indexOf('--env.analyze') >= 0;
 
 // plugins
-const CleanWebpackPlugin = require('clean-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const TerserPlugin = require('terser-webpack-plugin');
 const webpackConfig = require('./webpack.config');
