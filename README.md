@@ -2,8 +2,6 @@
 
 A bare minimum preact-webpack-typescript boilerplate for quickly creating interactive applications.
 
-**Note:** This project does not include **Server-Side Rendering**,  **Testing Frameworks** or any other items that would make this package unnecessarily complicated.
-
 ## Contains
 
 - [x] [Typescript](https://www.typescriptlang.org)
