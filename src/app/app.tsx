@@ -9,11 +9,11 @@ const ICON_PREACT = require('../assets/svg/icon-preact.svg').default;
 const ICON_TYPESCRIPT = require('../assets/svg/icon-typescript.svg').default;
 const ICON_SASS = require('../assets/svg/icon-sass.svg').default;
 
-export default class App extends Component {
+export default class App extends Component<{}, {}> {
   public refApp = createRef();
 
   public componentDidMount = (): void => {
-    console.log('componentDidMount', this, this.refApp);
+    console.log('componentDidMount');
   };
 
   private onLoad = (): void => {
