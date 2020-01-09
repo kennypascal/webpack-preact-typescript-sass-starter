@@ -16,6 +16,6 @@ test('should return a string as upper camel case', () => {
   expect(toUpperCamelCase('--- This happy test. ---')).toBe('ThisHappyTest')
 });
 
-test('should return a string as lower camel case', () => {
+test('should return a string as upper camel case', () => {
   expect(toUpperCamelCase('ce-content')).toBe('CeContent')
 });
