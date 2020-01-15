@@ -5,10 +5,10 @@ import Counter from './counter';
 let wrapper;
 
 beforeEach(() => {
+  wrapper = mount(<Counter initialCount={5} />);
 });
 
 describe('Counter', () => {
-  wrapper = mount(<Counter initialCount={5} />);
   
   it('should display initial count', () => {
     // const wrapper = mount(<Counter initialCount={5} />);

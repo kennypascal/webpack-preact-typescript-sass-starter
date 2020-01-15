@@ -1,0 +1,83 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ImageLoader should correctly render image-loader component when error 1`] = `
+<div
+  className="image-loader"
+>
+  <p>
+    error
+  </p>
+  <img
+    alt="A happy test."
+    className="image image--error image--in"
+    onError={[Function]}
+    onLoad={[Function]}
+    src="https://picsum.photos/seed/picsum/200/300"
+  />
+</div>
+`;
+
+exports[`ImageLoader should correctly render image-loader component when error and ready 1`] = `
+<div
+  className="image-loader"
+>
+  <p>
+    error
+  </p>
+  <img
+    alt="A happy test."
+    className="image image--error image--in"
+    onError={[Function]}
+    onLoad={[Function]}
+    src="https://picsum.photos/seed/picsum/200/300"
+  />
+</div>
+`;
+
+exports[`ImageLoader should correctly render image-loader component when loaded 1`] = `
+<div
+  className="image-loader"
+>
+  <p>
+    loaded
+  </p>
+  <img
+    alt="A happy test."
+    className="image image--loaded image--in"
+    onError={[Function]}
+    onLoad={[Function]}
+    src="https://picsum.photos/seed/picsum/200/300"
+  />
+</div>
+`;
+
+exports[`ImageLoader should correctly render image-loader component when loaded and ready 1`] = `
+<div
+  className="image-loader"
+>
+  <img
+    alt="A happy test."
+    className="image image--loaded image--in"
+    onError={[Function]}
+    onLoad={[Function]}
+    src="https://picsum.photos/seed/picsum/200/300"
+  />
+</div>
+`;
+
+exports[`ImageLoader should correctly render image-loader component when loading 1`] = `
+<div
+  className="image-loader"
+>
+  <p>
+    loading
+  </p>
+  <img
+    alt="A happy test."
+    className="image image--loading image--in"
+    onError={[Function]}
+    onLoad={[Function]}
+    src="https://picsum.photos/seed/picsum/200/300"
+  />
+</div>
+`;

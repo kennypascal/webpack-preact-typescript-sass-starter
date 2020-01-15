@@ -5,7 +5,7 @@ import elementPosition from './element-position';
  * @param {Element} element
  * @param {number} [offset=0.5] A percentage of how much the element needs to be in view to be true (1 = 100% of the element in view = true)
  */
-function elementIsInView(element: Element, offset: number = 0.5): boolean | undefined {
+function elementIsInView(element: Element, offset = 0.5): boolean | undefined {
   let status;
   if (element) {
     const elementHeight = element.getBoundingClientRect().height;

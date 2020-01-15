@@ -1,6 +1,7 @@
 import './app.scss';
 import { Component, h, createRef } from 'preact';
 import markDownHTML from '../utilities/mark-down-html';
+import ImageLoader from '../components/image-loader/image-loader';
 
 const COMPONENT_NAME = 'app';
 
@@ -16,7 +17,7 @@ export default class App extends Component<{}, {}> {
     console.log('componentDidMount');
   };
 
-  private onLoad = (): void => {
+  private onLoaded = (): void => {
     this.setAppStatus();
   };
 
@@ -31,7 +32,14 @@ export default class App extends Component<{}, {}> {
   public render(): h.JSX.Element {
     return (
       <div ref={this.refApp} className={COMPONENT_NAME}>
-        <img className={`${COMPONENT_NAME}__bkgd`} src='/assets/img/sven-scheuermeier-37377-unsplash.jpg' alt='' data-id='test' onLoad={this.onLoad} onError={this.onError} />
+        <ImageLoader
+          className={`${COMPONENT_NAME}__bkgd`}
+          src='/assets/img/sven-scheuermeier-37377-unsplash.jpg'
+          alt=''
+          onLoaded={this.onLoaded}
+          onError={this.onError}
+        />
+        <img className={`${COMPONENT_NAME}__bkgd`} src='/assets/img/sven-scheuermeier-37377-unsplash.jpg' alt='' data-id='test' />
         <div className={`${COMPONENT_NAME}__content`}>
           <h1>En las monta&ntilde;as codificamos.</h1>
           <p className='divider'>
