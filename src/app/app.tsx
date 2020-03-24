@@ -13,7 +13,7 @@ export default class App extends Component<{}, {}> {
   public refApp = createRef();
 
   public componentDidMount = (): void => {
-    console.log('componentDidMount');
+    console.log('App is ready!');
   };
 
   private onLoaded = (): void => {
