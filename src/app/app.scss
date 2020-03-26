@@ -14,7 +14,7 @@ body {
   opacity: 0;
   transition: $transition-default;
   transition-duration: $transition-duration * 5;
-  transition-timing-function: ease(easeInOutQuad);
+  transition-timing-function: ease(ease-in-out-quad);
   border: yellow 20px solid;
 
   &.is-ready {
