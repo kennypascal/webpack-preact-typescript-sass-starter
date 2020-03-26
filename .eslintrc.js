@@ -7,6 +7,7 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 2018, // Allow parsing of modern ECMAScript features
     sourceType: 'module', // Allow the use of imports
+    project: './tsconfig.json',
   },
   extends: [
     'airbnb-typescript',
