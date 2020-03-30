@@ -20,7 +20,6 @@ A bare minimum preact-webpack-typescript boilerplate for quickly creating intera
 - [x] [Mini CSS Extract Plugin](https://github.com/webpack-contrib/mini-css-extract-plugin)
 - [x] [HTML Webpack Plugin](https://github.com/ampedandwired/html-webpack-plugin)
 
-
 ## Preparation
 Before you start developing you will need:
 
@@ -29,24 +28,16 @@ Before you start developing you will need:
 - [NPM](https://www.npmjs.com/) (version 8.12.0 is recommended for this repo)
 - [NVM](https://github.com/creationix/nvm) (manage multiple versions of Node and NPM)
 
-
 ## Setup
 ```
 $ npm run setup
 ```
 When running setup you will be prompted to enter information regarding your project.
 
-
-
 ## Running
 ```
 $ npm run start 
 ```
-
-Point your browser to:
-
-http://localhost:7799
-
 
 ## Build
 
@@ -55,16 +46,12 @@ When building the final project and template for deployment run:
 $ npm run build
 ```
 
-
 To add a report analyzing the javascript bundle run:
 ```
 $ npm run build:analyze
 ```
 
-
-
 This will create a build folder with html, javascript and css files along with an assets folder.
-
 
 # License
 
