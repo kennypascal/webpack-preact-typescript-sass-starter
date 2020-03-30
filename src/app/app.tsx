@@ -4,6 +4,7 @@ import markDownHTML from '../utilities/mark-down-html';
 
 const COMPONENT_NAME = 'app';
 
+const IMAGE_BKGD = require('../assets/img/sven-scheuermeier-37377-unsplash.jpg').default;
 const ICON_WEBPACK = require('../assets/svg/icon-webpack.svg').default;
 const ICON_PREACT = require('../assets/svg/icon-preact.svg').default;
 const ICON_TYPESCRIPT = require('../assets/svg/icon-typescript.svg').default;
@@ -31,9 +32,10 @@ export default class App extends Component {
   public render(): h.JSX.Element {
     return (
       <div ref={this.refApp} className={COMPONENT_NAME}>
-        <img className={`${COMPONENT_NAME}__bkgd`} src='/assets/img/sven-scheuermeier-37377-unsplash.jpg' alt='' data-id='test' onLoad={this.onLoad} onError={this.onError} />
+        <img className={`${COMPONENT_NAME}__bkgd`} src={IMAGE_BKGD} alt='' data-id='test' onLoad={this.onLoad} onError={this.onError} />
         <div className={`${COMPONENT_NAME}__content`}>
           <h1>En las monta&ntilde;as codificamos.</h1>
+          <p>A bare minimum preact-webpack-typescript boilerplate for quickly creating interactive applications.</p>
           <p className='divider'>
             <hr />
           </p>
