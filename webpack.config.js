@@ -94,22 +94,6 @@ module.exports = {
       isProduction: isProduction ? 'true' : 'false'
     }),
 
-    // Determines whether to embed source files (css & js) based on HtmlWebpackPlugin plugin data
-    new webpack.DefinePlugin({
-      inlineSource: (htmlWebpackPlugin, compilation, sourceType) => {
-        let extension;
-        if (sourceType === 'script') {
-          extension = 'js';
-        }
-        if (sourceType === 'style') {
-          extension = 'css';
-        }
-        return htmlWebpackPlugin.options.inlineSource && extension
-          ? htmlWebpackPlugin.files[extension].map(file => `<${sourceType}>${compilation.assets[file.substr(1)].source()}</${sourceType}>`)
-          : '';
-      }
-    }),
-
     new StylelintPlugin(),
 
     // extract css
@@ -117,7 +101,6 @@ module.exports = {
 
     // html
     new HtmlWebpackPlugin({
-      inlineSource: '.(js|css)$',
       chunks: ['app'],
       template: 'index.ejs',
       filename: 'index.html',
@@ -125,7 +108,3 @@ module.exports = {
     })
   ]
 };
-
-if (inlineSource) {
-  module.exports.plugins.push(new HtmlWebpackInlineSourcePlugin());
-}
