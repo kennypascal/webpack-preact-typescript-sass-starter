@@ -12,13 +12,17 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "setup": "npm install && node tools/messages/setup.js && node tools/setup.js",
+    "setup": "npm install && npm run message:setup && node tools/setup.js",
     "start": "npm run ip && webpack-dev-server -d --history-api-fallback --hot --inline --progress --colors --config webpack.config.dev.js",
-    "build": "webpack -p --progress --colors --config webpack.config.build.js && node tools/messages/build.js && node tools/server.js",
-    "build:analyze": "webpack -p --progress --colors --config webpack.config.build.js --env.analyze && node tools/messages/build.js",
-    "build:inline-source": "webpack -p --progress --colors --config webpack.config.build.js --env.inline-source && node tools/messages/build.js",
-    "ip": "node tools/messages/ip.js",
-    "prettier": "prettier --write \"src/**/*.{ts,tsx,css,scss,js,jsx,json}\""
+    "build": "webpack -p --progress --colors --config webpack.config.build.js && npm run build:complete",
+    "build:analyze": "webpack -p --progress --colors --config webpack.config.build.js --env.analyze && npm run build:complete",
+    "build:complete": "npm run prettier:html && npm run message:build-complete && npm run message:build-server",
+    "prettier": "prettier --write \"src/**/*.{ts,tsx,css,scss,js,jsx,json}\"",
+    "prettier:html": "prettier --write \"build/**/*.html\"",
+    "message:setup": "node tools/messages/setup.js",
+    "message:build-complete": "node tools/messages/build.js",
+    "message:build-server": "node tools/server.js",
+    "message:ip": "node tools/messages/ip.js"
   },
   "dependencies": {
     "@types/react": "^16.9.35",
