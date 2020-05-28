@@ -1,6 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable @typescript-eslint/no-var-requires */
-
 const env = './build';
 const chalk = require('chalk');
 const express = require('express');

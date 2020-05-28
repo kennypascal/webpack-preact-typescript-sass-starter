@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 
 const webpack = require('webpack');
 const path = require('path');
@@ -6,7 +5,6 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackInlineSourcePlugin = require('html-webpack-inline-source-plugin');
-const StylelintPlugin = require('stylelint-webpack-plugin');
 
 const { getAssetFilename, getTitle } = require('./tools/utilities');
 
@@ -37,12 +35,6 @@ module.exports = {
   },
   module: {
     rules: [
-      {
-        enforce: 'pre',
-        test: /\.(ts|js)x?$/,
-        exclude: /node_modules/,
-        loader: 'eslint-loader'
-      },
       // typescript
       // ts-loader: convert typescript (es6) to javascript (es6),
       // babel-loader: converts javascript (es6) to javascript (es5)
