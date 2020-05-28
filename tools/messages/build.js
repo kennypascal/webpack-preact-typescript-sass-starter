@@ -1,6 +1,3 @@
 const chalk = require('chalk');
-console.log('\n');
-console.log(chalk.black.bgMagenta('                              '));
-console.log(chalk.black.bgMagenta('       ✔ Build Complete       '));
-console.log(chalk.black.bgMagenta('                              '));
-console.log('\n');
+const chalkSuccess = chalk.green;
+console.log('\n\n' + chalkSuccess('✔ ') + 'Build Complete\n\n');

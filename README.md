@@ -45,7 +45,7 @@ $ npm run start
 
 Point your browser to:
 
-http://localhost:7799
+http://localhost:7700
 
 
 ## Build
@@ -63,7 +63,9 @@ $ npm run build:analyze
 
 
 
-This will create a build folder with html, javascript and css files along with an assets folder.
+The build scripts will create a folder with all html, javascript, css files and assets. It will start a static server to preview at: 
+
+http://localhost:7701
 
 
 # License
